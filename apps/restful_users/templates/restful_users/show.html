@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show User</title>
+
+    <style>
+            #link { 
+                background: none;
+                border: none;
+                color: #0066ff;
+                text-decoration: underline;
+                cursor: pointer; 
+                }
+    </style>
+
+</head>
+<body>
+    
+    <h1>User</h1>
+    <p>Full Name: {{user.first_name}} {{user.last_name}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Created at: {{user.created_at}}</p>
+    <form action="/users/edit/{{user.id}}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Edit" id="link">
+    </form>
+    <form  action="/delete/{{user.id}}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete" id="link">     
+    </form>
+    <form action="/back" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Back" id="link">
+    </form>
+    
+</body>
+</html>

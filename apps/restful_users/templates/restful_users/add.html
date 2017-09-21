@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <style>
+        #link { 
+            background: none;
+            border: none;
+            color: #0066ff;
+            text-decoration: underline;
+            cursor: pointer; 
+            }
+    </style>
+</head>
+    <body>
+
+        <div>
+
+            <h1 style='text-align: center'>Add New User</h1>
+
+            <form action="/users/create", method='POST' style='text-align: center'>
+                {% csrf_token %}
+                <label for="first_name">First Name: <input type="text" name="first_name" id="first_name"></label>
+                <br>
+                <br>
+                <label for="last_name">Last Name: <input type="text" name="last_name" id="last_name"></label>
+                <br>
+                <br>
+                <label for="email">Email Address: <input type="text" name="email" id="email"></label>
+                <br>
+                <br>
+                <input type="submit" value="Create">
+            </form>
+            <form action="/back" method="POST" style='text-align: center'>
+                {% csrf_token %}
+                <input type="submit" value="Back" id="link">
+            </form>
+        </div>
+        
+    </body>
+</html>

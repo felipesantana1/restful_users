@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        #link { 
+            background: none;
+            border: none;
+            color: #0066ff;
+            text-decoration: underline;
+            cursor: pointer; 
+            }
+    </style>
+</head>
+<body>
+    <h1>Users</h1>
+    
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Created at</th>
+            <th>Actions</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            
+            <td>{{user.id}}</td>
+            <form action="users/{{user.id}}">
+                {% csrf_token %}
+                <td><input id="link" type="submit" value='{{user.first_name}} {{user.last_name}}'></td>
+            </form>
+            <td>{{user.email}}</td>
+            <td>{{user.created_at}}</td>
+            
+            <td>
+            
+                <form  action="/users/{{user.id}}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Show" id="link">                      
+                </form>
+            </td>
+            <td>
+                <form  action="/users/edit/{{user.id}}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Edit" id="link">                  
+                </form>
+            </td>    
+            <td>
+                <form  action="/delete/{{user.id}}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" id="link">     
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <form  action="/users/add" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Add New User" id="link">     
+    </form>
+
+</body>
+</html>
